@@ -1,0 +1,59 @@
+#Game Review prediction Project
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import sklearn
+
+games=pd.read_csv('games.csv')
+print games.shape
+print games.column
+# histogram plot of average rating column of dataset
+plt.hist(games['ave_rating']) 
+plt.show()
+#To get first row of ave_rating = 0
+Print games[games['ave_rating']==0].iloc[0]
+#To get first row of ave_rating > 0
+Print games[games['ave_rating'] > 0].iloc[0]
+#To remove entries without game review
+games=games[games('review')>0]
+#Remove rows with missing value
+games= games.drop(axis=0)
+#craete Correlation matrix
+Correlation=games.corr()
+fig=plt.figure(figsize(12,9))
+#Seaborn library can be used for visual correlation display between different parameters
+sns.heatmap(correlate,max=0,square=True)
+plt.show()
+# get all columns
+column=games.columns.tolist()
+#To remove the column which are not required
+column= (t for c in columns if c not in ('name','numberOfPlayer','id')
+target='ave_rating'
+#Generate training data
+from sklearn.cross_validation import TrainTestSplit
+train=games.sample(frac=0.1,random_state=1)
+test=games.loc[games.indexisintrain.index]
+
+#Linear regression model
+from sklearn.linear_model import LinearRegression
+from sklearn.matrix import mean_squared_error
+LR=LinearRegression()
+LR.fit(train[column],train[target])
+#Generate predictions from test dataset
+prediction= LR.predict(test[column]]
+#Compute error bt test prediction and actual value
+mean_squared_error(prediction,test[target])
+
+#Random forest regression model
+from sklearn.assemble from RandomForestRegressor
+RFR=RandomForestRegressor(estimstor=100,min.sample_leaf=10,random_state=1)
+RFR.fit(train[column],train[target])
+#Generate predictions from test dataset
+prediction= RFR.predict(test[column]]
+#Compute error bt test prediction and actual value
+mean_squared_error(prediction,test[target])
+
+
+
+
